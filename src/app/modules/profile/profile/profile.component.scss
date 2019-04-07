@@ -1,0 +1,17 @@
+@import '../../../../scss/variables.scss';
+
+.component-container {
+  background: $accent;
+
+  // .avatar {
+  //   margin: 21px;
+  // }
+
+  [nz-icon] {
+    margin-right: 8px;
+    font-size: 21px;
+  }
+  .menu {
+    background: $primary;
+  }
+}

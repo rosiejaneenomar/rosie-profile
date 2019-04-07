@@ -1,0 +1,27 @@
+<div class="component-container">
+  <div nz-row nzType="flex" nzJustify="start">
+    <div nz-col nzSpan="8">
+      <nz-avatar class="avatar" [nzSize]="200" nzIcon="user"></nz-avatar>
+    </div>
+    <div nz-col nzSpan="14" class="pt-5">
+      <h1>ROSIE JANE RESELOZA ENOMAR</h1>
+      <h4>Software Engineer</h4>
+      <div class="pt-3">
+        <i nz-icon [nzType]="'facebook'"></i>
+        <i nz-icon [nzType]="'twitter'"></i>
+        <i nz-icon [nzType]="'linkedin'"></i>
+        <i nz-icon [nzType]="'youtube'"></i>
+        <i nz-icon [nzType]="'github'"></i>
+      </div>
+    </div>
+    <div nz-col nzSpan="1" [nzPush]="2" class="menu">
+      <div class="p-2">
+          <div><nz-avatar class="avatar mt-0 ml-1" nzIcon="user" nzSize="small"></nz-avatar></div>
+          <div class="ml-1 mt-3"><i nz-icon nzType="deployment-unit"></i></div>
+          <div class="ml-1 mt-3"><i nz-icon nzType="project"></i></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

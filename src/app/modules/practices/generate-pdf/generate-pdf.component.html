@@ -1,0 +1,131 @@
+<div class="container-page">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="sourceForm">
+    <nz-table #basicTable [(nzData)]="data" [nzShowPagination]="false" class="w-100">
+      <thead>
+        <tr>
+          <th>Check in date</th>
+          <th>Checkout date</th>
+          <th>Hotel Name</th>
+          <th>Room Type</th>
+          <th>Unit Price</th>
+          <th>Qty</th>
+          <th>Total Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data; let i=index;">
+
+          <td>
+            <div *ngIf="item?.edit">{{ item.checkInDate | date:'longDate' }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <nz-date-picker formControlName="checkInDate"></nz-date-picker>
+                  </nz-input-group>
+                  <nz-form-explain
+                    *ngIf="sourceForm.get('checkInDate')?.dirty && sourceForm.get('checkInDate')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item.checkOutDate | date:'longDate' }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <nz-date-picker formControlName="checkOutDate"></nz-date-picker>
+                  </nz-input-group>
+                  <nz-form-explain
+                    *ngIf="sourceForm.get('checkOutDate')?.dirty && sourceForm.get('checkOutDate')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item.hotelName }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <input formControlName="hotelName" nz-input type="text" placeholder="Hotel Name" />
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="sourceForm.get('hotelName')?.dirty && sourceForm.get('hotelName')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item.roomType }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <input formControlName="roomType" nz-input type="text" placeholder="Room Type" />
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="sourceForm.get('roomType')?.dirty && sourceForm.get('roomType')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item.unitPrice | number: '1.2-2' }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <input formControlName="unitPrice" nz-input type="number" placeholder="Unit Price" />
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="sourceForm.get('unitPrice')?.dirty && sourceForm.get('unitPrice')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item.qty }}</div>
+            <div *ngIf="!item?.edit">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group [nzPrefix]="prefixLock">
+                    <input formControlName="qty" nz-input type="number" placeholder="Qty" />
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="sourceForm.get('qty')?.dirty && sourceForm.get('qty')?.errors">
+                    Invalid field</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="item?.edit">{{ item?.totalPrice | number: '1.2-2' }}</div>
+            <!-- <div *ngIf="!item?.edit">
+             
+              </div> -->
+          </td>
+          <td>
+            <button *ngIf="!item?.edit" nz-button nzType="primary" [nzSize]="24" [disabled]="sourceForm?.invalid" (click)="onSave(i)">
+              Save</button>
+              <button *ngIf="item?.edit" nz-button nzType="primary" [nzSize]="24" [disabled]="sourceForm?.invalid || hasCurrentEdit" (click)="onEdit(i)">
+                Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+
+    <div nz-row nzType="flex" nzJustify="space-between">
+      <button nz-button nzType="primary" [nzSize]="21" class="mt-2" [disabled]="sourceForm?.invalid || hasCurrentEdit" (click)="onAddRow()">
+        <i nz-icon type="plus"></i>Add Row
+      </button>
+      <button nz-button nzType="primary" [nzSize]="21" class="mt-2" [disabled]="sourceForm?.invalid || hasCurrentEdit" (click)="onExportBilling()">
+        <i nz-icon type="download"></i>Export Billing
+      </button>
+    </div>
+  </form>
+</div>

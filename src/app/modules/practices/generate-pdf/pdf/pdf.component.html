@@ -1,0 +1,28 @@
+Cebu Islands Travel and Tours
+Room 104, NDX Commercial Complex, AS Fortuna St. Mandaue City
+Tel No: 032-4168892
+Billing Statement
+
+Code: FE-2201
+
+<nz-table #basicTable [(nzData)]="data" [nzShowPagination]="false" class="w-100" id="data-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+        <th>Remarks</th>
+ 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data; let i=index;">
+        
+        <td>{{ item.hotelName }}</td>
+        <td>{{ item?.totalPrice | number: '1.2-2' }}</td>
+        <td>{{ item.roomType }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+<div>Total: {{ totalBill }}</div>
